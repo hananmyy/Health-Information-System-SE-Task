@@ -1,0 +1,24 @@
+{
+  "name": "health-information-system-cema-task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "dev:watch": "npx @tailwindcss/cli -i ./public/css/styles.css -o ./public/css/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.4",
+    "body-parser": "^2.2.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.0",
+    "nodemon": "^3.1.10",
+    "sequelize": "^6.37.7",
+    "tailwindcss": "^4.1.4"
+  }
+}
