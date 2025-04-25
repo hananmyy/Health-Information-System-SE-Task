@@ -2,3 +2,62 @@
 
 
 @import "tailwindcss";
+
+.font-Poppins {
+    font-family: 'Poppins', serif;
+}
+
+.font-Lobster {
+    font-family: 'Lobster', serif;
+}
+
+.container {
+    max-width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width:340px){
+    .container-sm{
+        max-width: 340px;
+    }
+}
+@media (min-width:540px){
+    .container-md{
+        max-width: 540px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}
+@media (min-width:768px){
+    .container-lg{
+        max-width: 768px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}
+@media (min-width:1180px){
+    .container-xl{
+        max-width: 1180px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}
+
+section {
+    @apply pt-10 pb-8 md:py-18;
+}
+
+.nav-link {
+    @apply text-lg font-bold duration-300;
+}
+
+.nav-link:hover {
+    @apply opacity-70;
+}
+
+.btn{
+    @apply border border-slate-700 bg-slate-700 rounded-md px-5 py-2 duration-300;
+}

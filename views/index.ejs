@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css"
+    />
     <title>Home Page</title>
 </head>
 <body>
-    <h1 class="font-extrabold mx-auto z-50 p-5">Welcome to the Health Information System</h1>
+  <%- include('layouts/header'); -%> <%- include('layouts/footer'); -%>
+
+  <main>
+    <!-- Hero section -->
+    <section class="py-5 h-screen">
+      <div
+        class="container container-sm container-md container-lg container-xl flex flex-wrap items-center justify-center mx-auto mt-10 md:px-12 md:flex-row"
+      >
+        <div class="mb-14 lg:mb-0 lg:w-1/2 p-6 lg:pr-12">
+          <h1
+            class="max-w-xl text-[2.9rem] leading-none text-gray-900 font-sans text-center lg:text-5xl lg:text-left lg:leading-tight mb-5 font-Lobster"
+          >
+            <span class="text-gray-700 font-semibold">MedicSys</span> <br>A health information system built for smarter, faster healthcare decisions.
+          </h1>
+          
+        </div>
+        <div class="lg:w-1/3 sm:w-2/3">
+          <img src="./img/hero_img.jpg" alt="hero-img" class="rounded-2xl w-full h-auto max-h-120" />
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
