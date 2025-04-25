@@ -54,6 +54,15 @@ const clientRegisterController = require("./controllers/newClient");
 const storeDoctorController = require("./controllers/storeDoctor");
 const storeClientController = require("./controllers/storeClient");
 const clientListController = require("./controllers/clientList");
+const updateDoctorController = require("./controllers/updateDoctor");
+const updateClientController = require("./controllers/updateClient");
+const deleteClientController = require("./controllers/deleteClient");
+const deleteDoctorController = require("./controllers/deleteDoctor");
+const uploadDoctorPictureController = require("./controllers/uploadDoctorPicture");
+const uploadClientPictureController = require("./controllers/uploadClientPicture");
+
+
+
 
 
 // Define routes
@@ -70,6 +79,15 @@ app.get("/clients", clientListController);
 app.post("/doctor/login", loginDoctorController);
 app.post("/doctor/register", storeDoctorController);
 app.post("/client/register", storeClientController);
+app.post("/doctor/update", updateDoctorController);
+app.post("/client/:id/update", updateClientController);// Route for doctors to update a specific client’s profile
+app.post("/client/:id/delete", deleteClientController);  // Doctor deletes a client
+app.post("/doctor/delete", deleteDoctorController);  // Doctor deletes their own profile
+app.post("/doctor/uploadPicture", uploadDoctorPictureController);
+app.post("/client/:id/uploadPicture", uploadClientPictureController); 
+
+
+
 
 app.use((req, res) => res.render("notFound"));
 

@@ -21,7 +21,7 @@ module.exports = {
         name: "Emily Kimani",
         email: "emily@gmail.com",
         password: "hello123",
-        contact: "General Medicine",
+        speciality: "General Medicine",
       }
     ], { timestamps: true }); // Ensures timestamps are automatically handled
   },

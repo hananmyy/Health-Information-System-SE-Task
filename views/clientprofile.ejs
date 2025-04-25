@@ -33,7 +33,7 @@
             <p><strong class="text-black">Contact: </strong> <span><%= client.contact %></span></p>
             <p><strong class="text-black">Assigned Doctor: </strong> <span><%= client.doctor ? client.doctor.name : "Not Assigned" %></span></p>
 
-            <form action="/client/update" method="POST" class="mt-4">
+            <form action="/client/:id/update" method="POST" class="mt-4">
               <input type="text" name="name" placeholder="Update Name" class="border w-full text-base px-2 py-1 mb-2" value="<%= client.name %>">
               <input type="date" name="dob" placeholder="Update DOB" class="border w-full text-base px-2 py-1 mb-2" value="<%= client.dob %>">
               <input type="email" name="email" placeholder="Update Email" class="border w-full text-base px-2 py-1 mb-2" value="<%= client.email %>">
@@ -43,12 +43,12 @@
             </form>
 
             <!-- Image upload -->
-            <form action="/client/uploadPicture" method="POST" enctype="multipart/form-data" class="mt-4">
+            <form action="/client/:id/uploadPicture" method="POST" enctype="multipart/form-data" class="mt-4">
               <input type="file" name="profilePicture" class="border w-full text-base px-2 py-1 mb-2 bg-gray-200">
               <button type="submit" class="bg-slate-700 text-white py-1 px-3 rounded hover:bg-slate-800 hover:text-white">Upload Picture</button>
             </form>
 
-            <form action="/client/delete" method="POST" class="mt-4">
+            <form action="/client/:id/delete" method="POST" class="mt-4">
               <button type="submit" class="bg-red-800 text-white py-1 px-3 rounded hover:bg-red-500">Delete Profile</button>
             </form>
           </div>
@@ -61,8 +61,8 @@
             <form action="/programs" method="GET">
               <button class="gap-4 border-2 border-slate-200 bg-slate-700 text-white py-1 w-full rounded-md hover:bg-transparent hover:text-slate-700 font-semibold">View Programs</button>
             </form>
-            <form action="/logout" method="GET">
-              <button class="gap-4 border-2 border-slate-200 bg-slate-700 text-white py-1 w-full rounded-md hover:bg-transparent hover:text-slate-700 font-semibold">Logout</button>
+            <form action="/clients" method="GET">
+              <button class="gap-4 border-2 border-slate-200 bg-slate-700 text-white py-1 w-full rounded-md hover:bg-transparent hover:text-slate-700 font-semibold">Back to Clients List</button>
             </form>
           </div>
         </div>
