@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/output.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css"
+    />
+    <title>Clients List</title>
+</head>
+<body class="bg-gray-100 p-6">
+    <%- include('layouts/header'); -%> 
+    <%- include('layouts/footer'); -%>
+
+
+    <div class="container mx-auto mt-20 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Clients List</h2>
+        
+        <% if (clients.length > 0) { %>
+            <table class="w-full border-collapse border border-gray-300 rounded-lg">
+                <thead>
+                    <tr class="bg-slate-700 text-white">
+                        <th class="p-3 text-left">Name</th>
+                        <th class="p-3 text-left">DOB</th>
+                        <th class="p-3 text-left">Email</th>
+                        <th class="p-3 text-left">Contact</th>
+                        <th class="p-3 text-left">Gender</th>
+                        <th class="p-3 text-left">Profile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% clients.forEach(client => { %>
+                        <tr class="border-t border-gray-200 hover:bg-gray-50 transition">
+                            <td class="p-3"><%= client.name %></td>
+                            <td class="p-3"><%= client.dob ? client.dob.toDateString() : "N/A" %></td>
+                            <td class="p-3"><%= client.email %></td>
+                            <td class="p-3"><%= client.contact %></td>
+                            <td class="p-3"><%= client.gender %></td>
+                            <td class="p-3">
+                                <a href="/client/<%= client.id %>" class="text-blue-600 font-medium hover:underline">
+                                    View Profile
+                                </a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-gray-500 text-center mt-6">No clients found.</p>
+        <% } %>
+    </div>
+
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

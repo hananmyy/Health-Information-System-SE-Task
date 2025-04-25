@@ -47,11 +47,13 @@ const aboutController = require("./controllers/about");
 const contactController = require("./controllers/contact");
 const loginController = require("./controllers/login");
 const doctorProfileController = require("./controllers/doctorProfile");
+const clientProfileController = require("./controllers/clientProfile");
 const loginDoctorController = require("./controllers/loginDoctor");
 const doctorRegisterController = require("./controllers/newDoctor");
 const clientRegisterController = require("./controllers/newClient");
 const storeDoctorController = require("./controllers/storeDoctor");
 const storeClientController = require("./controllers/storeClient");
+const clientListController = require("./controllers/clientList");
 
 
 // Define routes
@@ -60,8 +62,11 @@ app.get("/about", aboutController);
 app.get("/contact", contactController);
 app.get("/auth/login", loginController);
 app.get("/doctorProfile", doctorProfileController);
+app.get("/client/:id", clientProfileController);
 app.get("/auth/doctorRegister", doctorRegisterController);
 app.get("/auth/clientRegister", clientRegisterController);
+app.get("/clients", clientListController);
+
 app.post("/doctor/login", loginDoctorController);
 app.post("/doctor/register", storeDoctorController);
 app.post("/client/register", storeClientController);
@@ -72,5 +77,5 @@ app.use((req, res) => res.render("notFound"));
 
 //This will only start the server as Database Connection is already handled in config/database.js file
 app.listen(3100, () => {
-  console.log("🚀 Server is running on port 3100");
+  console.log("Server is running on port 3100");
 });
