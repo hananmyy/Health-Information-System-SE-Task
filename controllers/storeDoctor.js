@@ -1,13 +1,12 @@
 const bcrypt = require('bcrypt');
-// const { Doctor } = require('../models');
+const { Doctor } = require('../models');
 
 module.exports = async (req, res) => {
-  const { name, email, password, confirmPassword, specialization } = req.body;
+  const { name, email, password, confirmPassword, speciality } = req.body;
   let validationErrors = [];
 
   try {
-    // Validate
-    if (!name || !email || !password || !confirmPassword || !specialization) {
+    if (!name || !email || !password || !confirmPassword || !speciality) {
       validationErrors.push("All fields are required");
     }
 
@@ -20,21 +19,19 @@ module.exports = async (req, res) => {
       validationErrors.push("A doctor with this email already exists");
     }
 
-    // If errors, flash and redirect
     if (validationErrors.length > 0) {
       req.flash('validationErrors', validationErrors);
       req.flash('data', req.body);
-      return res.redirect('/auth/doctorRegister');
+      return res.redirect('/doctor/register');
     }
 
-    // Hash password and save
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await Doctor.create({
       name,
       email,
       password: hashedPassword,
-      specialization,
+      speciality,
     });
 
     req.flash('successMessage', 'Registration successful! You can now log in.');
@@ -44,6 +41,6 @@ module.exports = async (req, res) => {
     validationErrors.push("Something went wrong. Try again.");
     req.flash('validationErrors', validationErrors);
     req.flash('data', req.body);
-    res.redirect('/auth/doctorRegister');
+    res.redirect('/doctor/register');
   }
 };

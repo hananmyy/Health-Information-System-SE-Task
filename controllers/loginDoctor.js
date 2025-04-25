@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-// const { Doctor } = require('../models');
+const { Doctor } = require('../models');
 
 module.exports = async (req, res) => {
   const { email, password } = req.body;
@@ -13,17 +13,27 @@ module.exports = async (req, res) => {
 
   try {
     const doctor = await Doctor.findOne({ where: { email } });
-    if (doctor && await bcrypt.compare(password, doctor.password)) {
-      req.session.doctorId = doctor.id;
-      req.flash('successMessage', 'Login Successful! Welcome back.');
-      return res.redirect('/doctor/dashboard');
-    } else {
+
+    if (!doctor) {
+      req.flash('error', 'Doctor not found.');
+      return res.redirect('/auth/login');
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, doctor.password);
+
+    if (!isPasswordValid) {
       req.flash('error', 'Invalid email or password.');
       return res.redirect('/auth/login');
     }
+
+    // Save doctor ID to session
+    req.session.doctorId = doctor.id;
+    req.flash('successMessage', 'Login Successful! Welcome back.');
+    return res.redirect('/doctorProfile');
+
   } catch (err) {
     console.error('Login error:', err);
-    req.flash('error', 'Something went wrong. Please try again later.');
+    req.flash('error', 'Something went wrong. Please try again.');
     return res.redirect('/auth/login');
   }
 };

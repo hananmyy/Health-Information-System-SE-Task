@@ -8,10 +8,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css"
     />
-    <title>Doctor Registration Page</title>
+    <title>Client Registration Page</title>
   </head>
   <body class="bg-white p-6">
-    <%- include('layouts/header'); -%> <%- include('layouts/footer'); -%>
+    <%- include('layouts/header'); -%> 
+    <%- include('layouts/footer'); -%>
 
     <% if (typeof successMessage === 'string' || (errors && errors.length > 0)) { %>
     <div id="flash-messages" class="fixed top-0 left-0 right-0 mt-4 mx-auto w-11/12 z-50">
@@ -30,14 +31,14 @@
     </div>
     <% } %>
 
-
-    <form action="/doctor/register" method="POST" class="">
+    <form action="/client/register" method="POST">
       <div class="flex justify-center items-center h-screen">
         <div class="w-96 p-6 shadow-lg bg-slate-200 rounded-md">
           <h1 class="text-3xl block text-center font-Poppins font-semibold">
-            <i class="fa-solid fa-user pr-2"></i>Register
+            <i class="fa-solid fa-user pr-2"></i> Client Registration
           </h1>
           <hr class="mt-3" />
+
           <div class="mt-3">
             <label for="name" class="block text-base mb-2">Name</label>
             <input
@@ -46,64 +47,60 @@
               name="name"
               class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white"
               placeholder="Enter Your Full Name..."
+              required
             />
           </div>
+
           <div class="mt-3">
-            <label for="email" class="block text-base mb-2"
-              >Email Address</label
-            >
+            <label for="dob" class="block text-base mb-2">Date of Birth</label>
+            <input
+              type="date"
+              id="dob"
+              name="dob"
+              class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white"
+              required
+            />
+          </div>
+
+          <div class="mt-3">
+            <label for="email" class="block text-base mb-2">Email Address</label>
             <input
               type="email"
               id="email"
               name="email"
               class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white"
               placeholder="Enter Your Email Address..."
+              required
             />
           </div>
+
           <div class="mt-3">
-            <label for="password" class="block text-base mb-2">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
+            <label for="gender" class="block text-base mb-2">Gender</label>
+            <select
+              id="gender"
+              name="gender"
               class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white"
-              placeholder="Enter Your Password..."
-            />
-          </div>
-          <div class="mt-3">
-            <label for="confirmPassword" class="block text-base mb-2"
-              >Confirm Password</label
+              required
             >
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white"
-              placeholder="Confirm Your Password..."
-            />
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
+
           <div class="mt-3">
-            <label for="phoneNumber" class="block text-base mb-2"
-              >Phone Number</label
-            >
+            <label for="contact" class="block text-base mb-2">Contact Number</label>
             <input
               type="tel"
-              id="phoneNumber"
-              name="phoneNumber"
+              id="contact"
+              name="contact"
               class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white"
-              placeholder="Enter Your Phone Number..."
+              placeholder="Enter Your Contact Number..."
+              required
             />
           </div>
-          <div class="mt-3">
-            <label for="location" class="block text-base mb-2">Speciality</label>
-            <input
-              type="text"
-              id="speciality"
-              name="speciality"
-              class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white"
-              placeholder="Enter Your Speciality..."
-            />
-          </div>
+
           <div class="mt-5">
             <button
               type="submit"
@@ -115,6 +112,7 @@
         </div>
       </div>
     </form>
+
     <script src="/js/scripts.js"></script>
   </body>
 </html>
