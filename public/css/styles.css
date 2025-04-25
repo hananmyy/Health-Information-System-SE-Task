@@ -47,7 +47,7 @@
 }
 
 section {
-    @apply pt-10 pb-8 md:py-18;
+    @apply py-8 md:py-18;
 }
 
 .nav-link {
