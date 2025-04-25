@@ -11,7 +11,14 @@ module.exports = async (req, res) => {
 
     await Doctor.destroy({ where: { id: doctorId } });
 
-    req.session.destroy(() => {
+    // Destroy session and ensure redirect happens after cleanup
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Error destroying session:", err);
+        req.flash("error", "Something went wrong. Please try again.");
+        return res.redirect("/doctorProfile");
+      }
+      
       req.flash("successMessage", "Doctor profile deleted successfully!");
       res.redirect("/");
     });

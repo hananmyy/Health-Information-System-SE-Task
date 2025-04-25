@@ -41,3 +41,18 @@ document.addEventListener('DOMContentLoaded', function() {
       })
   })
   
+
+  // SEARCH SCRIPT
+  document.getElementById("searchInput").addEventListener("keyup", function() {
+    let filter = this.value.toLowerCase();
+    let clients = document.querySelectorAll("#clientList li");
+
+    clients.forEach(client => {
+      let clientName = client.querySelector("a").innerText.toLowerCase();
+      if (clientName.includes(filter)) {
+        client.style.display = "";
+      } else {
+        client.style.display = "none";
+      }
+    });
+  });
