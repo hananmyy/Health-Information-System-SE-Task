@@ -2,8 +2,8 @@ const { Program } = require("../models");
 
 module.exports = async (req, res) => {
   try {
-    const doctorId = req.session.doctorId;
-    const programs = await Program.findAll();
+    const doctorId = req.session.doctorId; // Get the logged-in doctor's ID
+    const programs = await Program.findAll(); // Fetch all programs
 
     res.render("programs", { programs, doctor: { id: doctorId } });
 

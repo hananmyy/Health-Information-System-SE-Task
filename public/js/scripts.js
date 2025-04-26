@@ -56,3 +56,45 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+// DISPLAYING PROGRAMS
+
+function deleteProgram(programId) {
+  fetch(`/program/delete/${programId}`, { method: "POST" })
+    .then(response => response.json())
+    .then(() => location.reload()) // Reload the page after deletion
+    .catch(error => console.error("Error deleting program:", error));
+}
+
+function loadPrograms() {
+  fetch('/programs')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('program-container').innerHTML = html;
+    })
+    .catch(error => console.error('Error loading programs:', error));
+}
+
+document.addEventListener("DOMContentLoaded", loadPrograms);
+
+
+
+function loadProgramDropdown() {
+  fetch('/programs/data')
+    .then(response => response.json())
+    .then(programs => {
+      const dropdown = document.getElementById('programDropdown');
+      dropdown.innerHTML = ''; // Clear existing options
+
+      programs.forEach(program => {
+        let option = document.createElement('option');
+        option.value = program.id;
+        option.textContent = program.name;
+        dropdown.appendChild(option);
+      });
+    })
+    .catch(error => console.error("Error loading programs:", error));
+}
+
+document.addEventListener("DOMContentLoaded", loadProgramDropdown);
+

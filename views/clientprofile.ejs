@@ -11,115 +11,180 @@
     <title>Client Profile</title>
   </head>
   <body class="flex flex-col min-h-screen">
-
-    
-    
-  
     <main class="flex-grow">
-    <div class="flex flex-col">
-      <!-- Client Info Section -->
-      <div class="place-items-center p-15">
-        <div class="flex flex-row justify-center items-center shadow-lg bg-white p-6 w-200 h-150 mt-4 rounded-2xl">
-          <div class="basis-1/3 p-6">
-            <% if (client) { %>
-              <h2 class="text-3xl font-bold text-slate-600"><%= client.name %></h2>
-            <% } else { %>
-              <h2 class="text-red-500 text-2xl font-semibold">Client Not Found</h2>
-            <% } %>
-          </div>
+      <div class="flex flex-col">
+        <!-- Client Info Section -->
+        <div class="place-items-center p-15">
+          <div
+            class="flex flex-row justify-center items-center shadow-lg bg-white p-6 w-200 h-150 mt-4 rounded-2xl"
+          >
+            <div class="basis-1/3 p-6">
+              <% if (client) { %>
+              <h2 class="text-3xl font-bold text-slate-600">
+                <%= client.name %>
+              </h2>
+              <% } else { %>
+              <h2 class="text-red-500 text-2xl font-semibold">
+                Client Not Found
+              </h2>
+              <% } %>
+            </div>
 
-          <div class="basis-2/3 p-8 text-lg">
-            <p><strong>Date of Birth:</strong> <%= client.dob %></p>
-            <p><strong>Email:</strong> <%= client.email %></p>
-            <p><strong>Gender:</strong> <%= client.gender %></p>
-            <p><strong>Contact:</strong> <%= client.contact %></p>
-            <p><strong>Assigned Doctor:</strong> <%= client.doctor ? client.doctor.name : "Not Assigned" %></p>
+            <div class="basis-2/3 p-8 text-lg">
+              <p><strong>Date of Birth:</strong> <%= client.dob %></p>
+              <p><strong>Email:</strong> <%= client.email %></p>
+              <p><strong>Gender:</strong> <%= client.gender %></p>
+              <p><strong>Contact:</strong> <%= client.contact %></p>
+              <p>
+                <strong>Assigned Doctor:</strong> <%= client.doctor ?
+                client.doctor.name : "Not Assigned" %>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Enrolled Programs -->
-      <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
-        <h3 class="text-xl font-semibold">Enrolled Health Programs</h3>
-        <ul class="list-disc pl-6">
-          <% if (client.Programs && client.Programs.length > 0) { %>
-            <% client.Programs.forEach(program => { %>
-              <li><%= program.name %></li>
-            <% }); %>
-          <% } else { %>
+        <!-- Enrolled Programs -->
+        <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
+          <h3 class="text-xl font-semibold">Enrolled Health Programs</h3>
+          <ul class="list-disc pl-6">
+            <% if (client.Programs && client.Programs.length > 0) { %> <%
+            client.Programs.forEach(program => { %>
+            <li><%= program.name %></li>
+            <% }); %> <% } else { %>
             <li class="text-gray-500">No programs enrolled.</li>
-          <% } %>
-        </ul>
-      </div>
+            <% } %>
+          </ul>
+        </div>
 
-      <!-- Enroll in Programs -->
-      <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
-        <h3 class="text-xl font-semibold">Enroll in Health Programs</h3>
-        <form action="/client/<%= client.id %>/enroll" method="POST">
-          <select name="programIds" multiple class="border w-full px-2 py-1 mb-2">
-            <% programs.forEach(program => { %>
+        
+        <!-- Enroll Client in Programs -->
+        <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
+          <h3 class="text-xl font-semibold">Enroll in Health Programs</h3>
+          <form action="/client/<%= client.id %>/enroll" method="POST">
+            <select
+              name="programIds"
+              multiple
+              id="programDropdown"
+              class="border w-full px-2 py-1 mb-2"
+            >
+              <% programs.forEach(program => { %>
               <option value="<%= program.id %>"><%= program.name %></option>
-            <% }); %>
-          </select>
-          <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 font-semibold">
-            Enroll
-          </button>
-        </form>
-      </div>
+              <% }); %>
+            </select>
+            <button
+              type="submit"
+              class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
+            >
+              Enroll
+            </button>
+          </form>
+        </div>
 
-      <!-- Client Management Section -->
-      <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
-        <h3 class="text-xl font-semibold">Manage Client Profile</h3>
-        <form action="/client/<%= client.id %>/update" method="POST">
-          <input type="text" name="name" placeholder="Update Name" class="border w-full text-base px-2 py-1 mb-3" value="<%= client.name %>">
-          <input type="date" name="dob" placeholder="Update DOB" class="border w-full text-base px-2 py-1 mb-3" value="<%= client.dob %>">
-          <input type="email" name="email" placeholder="Update Email" class="border w-full text-base px-2 py-1 mb-3" value="<%= client.email %>">
-          <input type="text" name="gender" placeholder="Update Gender" class="border w-full text-base px-2 py-1 mb-3" value="<%= client.gender %>">
-          <input type="text" name="contact" placeholder="Update Contact" class="border w-full text-base px-2 py-1 mb-3" value="<%= client.contact %>">
-          <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 font-semibold">
-            Update Profile
-          </button>
-        </form>
-      </div>
+        <!-- Client Management Section -->
+        <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
+          <h3 class="text-xl font-semibold">Manage Client Profile</h3>
+          <form action="/client/<%= client.id %>/update" method="POST">
+            <input
+              type="text"
+              name="name"
+              placeholder="Update Name"
+              class="border w-full text-base px-2 py-1 mb-3"
+              value="<%= client.name %>"
+            />
+            <input
+              type="date"
+              name="dob"
+              placeholder="Update DOB"
+              class="border w-full text-base px-2 py-1 mb-3"
+              value="<%= client.dob %>"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Update Email"
+              class="border w-full text-base px-2 py-1 mb-3"
+              value="<%= client.email %>"
+            />
+            <input
+              type="text"
+              name="gender"
+              placeholder="Update Gender"
+              class="border w-full text-base px-2 py-1 mb-3"
+              value="<%= client.gender %>"
+            />
+            <input
+              type="text"
+              name="contact"
+              placeholder="Update Contact"
+              class="border w-full text-base px-2 py-1 mb-3"
+              value="<%= client.contact %>"
+            />
+            <button
+              type="submit"
+              class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 font-semibold"
+            >
+              Update Profile
+            </button>
+          </form>
+        </div>
 
-      <!-- Image Upload -->
-      <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
-        <h3 class="text-xl font-semibold">Upload Profile Picture</h3>
-        <form action="/client/<%= client.id %>/uploadPicture" method="POST" enctype="multipart/form-data">
-          <input type="file" name="profilePicture" class="border w-full text-base px-2 py-1 mb-3 bg-gray-200">
-          <button type="submit" class="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700">
-            Upload Picture
-          </button>
-        </form>
-      </div>
+        <!-- Image Upload -->
+        <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
+          <h3 class="text-xl font-semibold">Upload Profile Picture</h3>
+          <form
+            action="/client/<%= client.id %>/uploadPicture"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <input
+              type="file"
+              name="profilePicture"
+              class="border w-full text-base px-2 py-1 mb-3 bg-gray-200"
+            />
+            <button
+              type="submit"
+              class="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700"
+            >
+              Upload Picture
+            </button>
+          </form>
+        </div>
 
-      <!-- Client Deletion -->
-      <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
-        <form action="/client/<%= client.id %>/delete" method="POST">
-          <button type="submit" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700">
-            Delete Profile
-          </button>
-        </form>
-      </div>
+        <!-- Client Deletion -->
+        <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
+          <form action="/client/<%= client.id %>/delete" method="POST">
+            <button
+              type="submit"
+              class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700"
+            >
+              Delete Profile
+            </button>
+          </form>
+        </div>
 
-      <!-- Navigation Buttons -->
-      <div class="mt-6 p-6 bg-white shadow-md rounded-lg flex justify-between">
-        <form action="/programs" method="GET">
-          <button class="px-4 py-2 bg-slate-700 text-white rounded-md hover:bg-slate-600 font-semibold">
-            View Programs
-          </button>
-        </form>
-        <form action="/clients" method="GET">
-          <button class="px-4 py-2 bg-slate-700 text-white rounded-md hover:bg-slate-600 font-semibold">
-            Back to Clients List
-          </button>
-        </form>
+        <!-- Navigation Buttons -->
+        <div
+          class="mt-6 p-6 bg-white shadow-md rounded-lg flex justify-between"
+        >
+          <form action="/programs" method="GET">
+            <button
+              class="px-4 py-2 bg-slate-700 text-white rounded-md hover:bg-slate-600 font-semibold"
+            >
+              View Programs
+            </button>
+          </form>
+          <form action="/clients" method="GET">
+            <button
+              class="px-4 py-2 bg-slate-700 text-white rounded-md hover:bg-slate-600 font-semibold"
+            >
+              Back to Clients List
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
     </main>
-    
-    <%- include('layouts/header'); -%>
-    <%- include('layouts/footer'); -%>
+
+    <%- include('layouts/header'); -%> <%- include('layouts/footer'); -%>
     <script src="/js/scripts.js"></script>
   </body>
 </html>

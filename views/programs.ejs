@@ -1,66 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Health Programs</title>
-  <link rel="stylesheet" href="/css/output.css">
-</head>
-<body class="flex flex-col min-h-screen">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Health Programs</title>
+    <link rel="stylesheet" href="/css/output.css" />
+  </head>
+  <body class="flex flex-col min-h-screen">
     <%- include('layouts/header'); -%>
-    
-  
+
     <main class="flex-grow">
-  <div class="container mx-auto mt-10 p-8 bg-white shadow-lg rounded-lg">
-    <h2 class="text-3xl font-bold text-gray-700">Manage Health Programs</h2>
+      <div class="container mx-auto mt-10 p-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-3xl font-bold text-gray-700">Manage Health Programs</h2>
 
-    <!-- Display Existing Programs -->
-    <div class="mt-6">
-      <h3 class="text-xl font-semibold">Available Programs</h3>
-      <% if (programs.length > 0) { %>
-        <ul class="list-disc pl-6">
-          <% programs.forEach(program => { %>
-            <li>
-              <strong class="text-blue-600"><%= program.name %></strong> - <%= program.description %>
-              <% if (program.DoctorId === doctor.id) { %>
-                <form action="/program/delete/<%= program.id %>" method="POST" class="inline">
-                  <button class="bg-red-600 text-white px-2 py-1 rounded ml-2 hover:bg-red-700">
-                    Delete
-                  </button>
-                </form>
-              <% } %>
-            </li>
-          <% }); %>
-        </ul>
-      <% } else { %>
-        <p class="text-gray-500">No health programs available.</p>
-      <% } %>
-    </div>
+        <!-- Display Existing Programs -->
+        <div class="mt-6">
+          <h3 class="text-xl font-semibold mb-4">Available Programs</h3>
 
-    <!-- Create a New Program -->
-    <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
-      <h3 class="text-xl font-semibold">Create a New Health Program</h3>
-      <form action="/program/create" method="POST">
-        <input type="text" name="name" placeholder="Program Name" class="border w-full px-2 py-1 mb-2" required>
-        <textarea name="description" placeholder="Program Description" class="border w-full px-2 py-1 mb-2"></textarea>
-        <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
-          Create Program
-        </button>
-      </form>
-    </div>
+          <div id="program-container">
+            <% if (programs.length > 0) { %>
+            <div class="overflow-x-auto">
+              <table class="border-collapse w-full table-auto">
+                <thead>
+                  <tr class="bg-gray-200">
+                    <th class="px-4 py-2 text-left">Program Name</th>
+                    <th class="px-4 py-2 text-left">Description</th>
+                    <th class="px-4 py-2 text-left">Actions</th>
+                  </tr>
+                </thead>
 
-    <!-- Navigation Buttons -->
-    <div class="mt-6 flex justify-between">
-      <form action="/doctorProfile" method="GET">
-        <button class="px-4 py-2 bg-slate-700 text-white rounded-md hover:bg-slate-600 font-semibold">
-          Back to Profile
-        </button>
-      </form>
-    </div>
-  </div>
-</main>
-  <%- include('layouts/footer'); -%>
-  <script src="/js/scripts.js"></script>
-</body>
+                <tbody id="program-list">
+                  <% programs.forEach(program => { %>
+                  <tr class="border-b">
+                    <td class="px-4 py-2"><%= program.name %></td>
+                    <td class="px-4 py-2"><%= program.description %></td>
+                    <td class="px-4 py-2">
+                      <% if (program.DoctorId === doctor.id) { %>
+                      <button
+                        class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
+                        onclick="deleteProgram('<%= program.id %>')"
+                      >
+                        Delete
+                      </button>
+                      <% } else { %>
+                      <span class="text-gray-400 text-sm italic"
+                        >No Actions</span
+                      >
+                      <% } %>
+                    </td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+            <% } else { %>
+            <p class="text-gray-500">No health programs available.</p>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Create a New Program -->
+        <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
+          <h3 class="text-xl font-semibold">Create a New Health Program</h3>
+          <form action="/program/create" method="POST">
+            <input
+              type="text"
+              name="name"
+              placeholder="Program Name"
+              class="border w-full px-2 py-1 mb-2"
+              required
+            />
+            <textarea
+              name="description"
+              placeholder="Program Description"
+              class="border w-full px-2 py-1 mb-2"
+            ></textarea>
+            <button
+              type="submit"
+              class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+            >
+              Create Program
+            </button>
+          </form>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="mt-6 flex justify-between">
+          <form action="/doctorProfile" method="GET">
+            <button
+              class="px-4 py-2 bg-slate-700 text-white rounded-md hover:bg-slate-600 font-semibold"
+            >
+              Back to Profile
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <%- include('layouts/footer'); -%>
+    <script src="/js/scripts.js"></script>
+  </body>
 </html>

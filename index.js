@@ -9,6 +9,7 @@ const expressSession = require("express-session");
 const flash = require("connect-flash");
 const fileUpload = require("express-fileupload");
 
+
 app.set("view engine", "ejs");
 
 // Serve static files
@@ -41,6 +42,8 @@ app.use((req, res, next) => {
   next();
 });
 
+
+
 // Import controllers
 const homeController = require("./controllers/home");
 const aboutController = require("./controllers/about");
@@ -64,8 +67,8 @@ const uploadClientPictureController = require("./controllers/uploadClientPicture
 const createProgramController = require("./controllers/createProgram");
 const deleteProgramController = require("./controllers/deleteProgram");
 const viewProgramsController = require("./controllers/viewPrograms");
-
-
+const manageProgramsController = require("./controllers/managePrograms");
+const enrollClientController = require("../controllers/enrollClient");
 
 
 
@@ -77,11 +80,15 @@ app.get("/contact", contactController);
 app.get("/auth/login", loginController);
 app.get("/auth/logout", logoutController);
 app.get("/doctorProfile", doctorProfileController);
-app.get("/client/:id", clientProfileController);
+app.get("/client/:id", clientProfileController); // to render client profile page
 app.get("/auth/doctorRegister", doctorRegisterController);
 app.get("/auth/clientRegister", clientRegisterController);
 app.get("/clients", clientListController);
-app.get("/programs", viewProgramsController);
+app.get("/programs", manageProgramsController);
+app.get("/programs/data", viewProgramsController);
+app.get("/api/client/:id", clientProfileController); // API route to expose client data"
+app.get("/programs/:id", viewProgramsController); // Route to view a specific program
+
 
 app.post("/doctor/login", loginDoctorController);
 app.post("/doctor/register", storeDoctorController);
@@ -94,7 +101,7 @@ app.post("/doctor/uploadPicture", uploadDoctorPictureController);
 app.post("/client/:id/uploadPicture", uploadClientPictureController); 
 app.post("/program/create", createProgramController);
 app.post("/program/delete/:id", deleteProgramController); 
-
+app.post("/client/:id/enroll", enrollClientController); // Route to enroll a client in programs
 
 
 
