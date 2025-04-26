@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/output.css">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css"
-    />
-    <title>Not Found Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/output.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css" />
+  <title>Not found Page</title>
 </head>
-<body class="bg-white">
-    <%- include('layouts/header'); -%>
-    <%- include('layouts/footer'); -%>
+<body class="flex flex-col min-h-screen">
 
-   <script src="/js/scripts.js"></script>
+  <%- include('layouts/header'); -%>
+  
+
+  <main class="flex-grow">
+    
+    <section class="bg-cover bg-center h-[100vh] flex items-center justify-center" style="background-image: url('/img/notfound_img.jpg');">
+      <h1 class="text-white text-4xl md:text-5xl font-bold">Page Not Found</h1>
+    </section>
+
+
+  
+  
+  <script src="/js/scripts.js"></script>
 </body>
 </html>

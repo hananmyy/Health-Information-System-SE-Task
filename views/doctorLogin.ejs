@@ -10,8 +10,12 @@
     />
     <title>Login Page</title>
   </head>
-  <body class="bg-white">
-    <%- include('layouts/header'); -%> <%- include('layouts/footer'); -%>
+  <body class="flex flex-col min-h-screen">
+
+    <%- include('layouts/header'); -%>
+    
+  
+    <main class="flex-grow">
 
     <% if (typeof successMessage === 'string' || typeof error === 'string' ) { %>
     <div id="flash-messages"
@@ -34,7 +38,7 @@
     <form action="/doctor/login" method="POST">
       <div class="flex justify-center items-center h-screen">
         <div class="w-96 p-6 shadow-lg bg-slate-200 rounded-md">
-          <h1 class="text-3xl block text-center font-Poppins font-semibold">
+          <h1 class="text-3xl md:text-4xl block text-center font-Lobster font-semibold">
             <i class="fa-solid fa-user pr-2"></i>Login
           </h1>
           <hr class="mt-3" />
@@ -73,6 +77,9 @@
         </div>
       </div>
     </form>
+    </main>
+    <%- include('layouts/footer'); -%>
+    
     <script src="/js/scripts.js"></script>
   </body>
 </html>

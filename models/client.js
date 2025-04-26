@@ -9,6 +9,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "DoctorId",
         as: "doctor"
       });
+
+      // Define a many-to-many relationship with Programs
+      Client.belongsToMany(models.Program, {
+        through: "ClientPrograms",
+        as: "Programs",
+        foreignKey: "ClientId"
+      });
     }
   }
 

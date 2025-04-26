@@ -10,14 +10,15 @@
     />
     <title>Clients List</title>
 </head>
-<body class="bg-gray-100 p-6">
-    <%- include('layouts/header'); -%> 
-    <%- include('layouts/footer'); -%>
+<<body class="flex flex-col min-h-screen">
 
-
+    
+    <%- include('layouts/header'); -%>
+  
+    <main class="flex-grow">
     <div class="container mx-auto mt-20 p-6 bg-white shadow-lg rounded-lg">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Clients List</h2>
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center font-Lobster">Clients List</h2>
             <input type="text" id="searchInput" placeholder="Search Clients..." class="border px-3 py-2 mb-4">
         </div>
         <% if (clients.length > 0) { %>
@@ -58,7 +59,10 @@
             <button class="gap-4 border-2 border-slate-200 bg-slate-700 text-white px-6 py-4 w-full rounded-md hover:bg-transparent hover:text-slate-700 font-semibold">Back to Your Profile</button>
           </form>
     </div>
+    </main>
 
+    
+    <%- include('layouts/footer'); -%>
 
     <script src="/js/script.js"></script>
 </body>

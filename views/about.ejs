@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/output.css">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css"
-    />
-    <title>About Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/output.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css" />
+  <title>About Us</title>
 </head>
-<body class="bg-white">
-    <%- include('layouts/header'); -%>
-    <%- include('layouts/footer'); -%>
+<body class="flex flex-col min-h-screen">
 
-    <p class="text-gray-600 text-lg font-Poppins text-center lg:text-left mb-8">
-      <span class="text-gray-700">MedicSys</span> is a health information system that provides a comprehensive solution for managing patient data, appointments, and medical records. It is designed to streamline healthcare processes and improve patient care.</p>
+  <%- include('layouts/header'); -%>
+  
 
-   <script src="/js/scripts.js"></script>
+  <main class="flex-grow">
+    <!-- About Header Section -->
+    <section class="bg-cover bg-center h-[50vh] flex items-center justify-center" style="background-image: url('/img/about_img.jpg');">
+      <h1 class="text-white text-4xl md:text-5xl font-bold font-Lobster">About Us</h1>
+    </section>
+
+    <!-- About Content Section -->
+    <section class="py-12 px-6 md:px-20">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-800">Our Mission</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">
+          MedixSys is dedicated to revolutionizing healthcare information systems by providing doctors and health workers with smarter, faster, and more reliable tools to manage patients and health programs.
+        </p>
+
+        <h2 class="text-2xl font-semibold mt-10 mb-6 text-gray-800">Our Vision</h2>
+        <p class="text-gray-600 leading-relaxed">
+          We envision a future where healthcare decisions are fully powered by real-time, accurate data — improving patient outcomes and transforming the way medical care is delivered.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <%- include('layouts/footer'); -%>
+  
+  <script src="/js/scripts.js"></script>
 </body>
 </html>

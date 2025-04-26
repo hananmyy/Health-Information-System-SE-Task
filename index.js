@@ -61,6 +61,10 @@ const deleteClientController = require("./controllers/deleteClient");
 const deleteDoctorController = require("./controllers/deleteDoctor");
 const uploadDoctorPictureController = require("./controllers/uploadDoctorPicture");
 const uploadClientPictureController = require("./controllers/uploadClientPicture");
+const createProgramController = require("./controllers/createProgram");
+const deleteProgramController = require("./controllers/deleteProgram");
+const viewProgramsController = require("./controllers/viewPrograms");
+
 
 
 
@@ -77,6 +81,7 @@ app.get("/client/:id", clientProfileController);
 app.get("/auth/doctorRegister", doctorRegisterController);
 app.get("/auth/clientRegister", clientRegisterController);
 app.get("/clients", clientListController);
+app.get("/programs", viewProgramsController);
 
 app.post("/doctor/login", loginDoctorController);
 app.post("/doctor/register", storeDoctorController);
@@ -87,6 +92,9 @@ app.post("/client/:id/delete", deleteClientController);  // Doctor deletes a cli
 app.post("/doctor/delete", deleteDoctorController);  // Doctor deletes their own profile
 app.post("/doctor/uploadPicture", uploadDoctorPictureController);
 app.post("/client/:id/uploadPicture", uploadClientPictureController); 
+app.post("/program/create", createProgramController);
+app.post("/program/delete/:id", deleteProgramController); 
+
 
 
 

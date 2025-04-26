@@ -10,10 +10,12 @@
     />
     <title>Home Page</title>
 </head>
-<body>
-  <%- include('layouts/header'); -%> <%- include('layouts/footer'); -%>
+<body class="flex flex-col min-h-screen">
 
-  <main>
+  <%- include('layouts/header'); -%>
+  
+
+  <main class="flex-grow">
     <!-- Hero section -->
     <section class="py-5 h-screen">
       <div
@@ -33,6 +35,8 @@
       </div>
     </section>
   </main>
+
+  <%- include('layouts/footer'); -%>
 
   <script src="/js/scripts.js"></script>
 </body>
