@@ -68,7 +68,7 @@ const createProgramController = require("./controllers/createProgram");
 const deleteProgramController = require("./controllers/deleteProgram");
 const viewProgramsController = require("./controllers/viewPrograms");
 const manageProgramsController = require("./controllers/managePrograms");
-const enrollClientController = require("../controllers/enrollClient");
+const enrollClientController = require("./controllers/enrollClient");
 
 
 

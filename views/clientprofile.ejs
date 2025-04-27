@@ -31,14 +31,15 @@
             </div>
 
             <div class="basis-2/3 p-8 text-lg">
-              <p><strong>Date of Birth:</strong> <%= client.dob %></p>
-              <p><strong>Email:</strong> <%= client.email %></p>
-              <p><strong>Gender:</strong> <%= client.gender %></p>
-              <p><strong>Contact:</strong> <%= client.contact %></p>
-              <p>
-                <strong>Assigned Doctor:</strong> <%= client.doctor ?
-                client.doctor.name : "Not Assigned" %>
-              </p>
+              <% if (client) { %>
+                <p><strong>Date of Birth:</strong> <%= client.dob %></p>
+                <p><strong>Email:</strong> <%= client.email %></p>
+                <p><strong>Gender:</strong> <%= client.gender %></p>
+                <p><strong>Contact:</strong> <%= client.contact %></p>
+                <p><strong>Assigned Doctor:</strong> <%= client.doctor ? client.doctor.name : "Not Assigned" %></p>
+              <% } else { %>
+                <p class="text-red-500">Client Not Found</p>
+              <% } %>
             </div>
           </div>
         </div>
@@ -47,7 +48,7 @@
         <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
           <h3 class="text-xl font-semibold">Enrolled Health Programs</h3>
           <ul class="list-disc pl-6">
-            <% if (client.Programs && client.Programs.length > 0) { %> <%
+            <% if (client && client.Programs && client.Programs.length > 0) { %> <%
             client.Programs.forEach(program => { %>
             <li><%= program.name %></li>
             <% }); %> <% } else { %>
@@ -61,20 +62,12 @@
         <div class="mt-6 p-6 bg-white shadow-md rounded-lg">
           <h3 class="text-xl font-semibold">Enroll in Health Programs</h3>
           <form action="/client/<%= client.id %>/enroll" method="POST">
-            <select
-              name="programIds"
-              multiple
-              id="programDropdown"
-              class="border w-full px-2 py-1 mb-2"
-            >
+            <select name="programIds[]" multiple id="programDropdown" class="border w-full px-2 py-1 mb-2">
               <% programs.forEach(program => { %>
-              <option value="<%= program.id %>"><%= program.name %></option>
+                <option value="<%= program.id %>"><%= program.name %></option>
               <% }); %>
             </select>
-            <button
-              type="submit"
-              class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
-            >
+            <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700">
               Enroll
             </button>
           </form>
@@ -184,7 +177,7 @@
       </div>
     </main>
 
-    <%- include('layouts/header'); -%> <%- include('layouts/footer'); -%>
+    
     <script src="/js/scripts.js"></script>
   </body>
 </html>

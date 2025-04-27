@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "DoctorId",
         as: "clients"
       });
+
+      // **FIX: Define relationship with Programs**
+      Doctor.hasMany(models.Program, {
+        foreignKey: "DoctorId",
+        as: "Programs"
+      });
     }
   }
 

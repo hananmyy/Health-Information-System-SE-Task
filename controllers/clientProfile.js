@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
     const client = await Client.findByPk(req.params.id, {
       include: [
         { model: Doctor, as: "doctor", attributes: ["name", "email", "speciality"] },
-        { model: Program } // Also include enrolled programs
+        { model: Program, as: "Programs" } // ✅ Fix alias issue for enrolled programs
       ]
     });
 
@@ -14,7 +14,8 @@ module.exports = async (req, res) => {
       return res.render('clientProfile', { error: 'Client not found.', client: null, programs: [] });
     }
 
-    const programs = await Program.findAll(); // Fetch all available programs
+    // Fetch all available programs
+    const programs = await Program.findAll();
 
     res.render('clientProfile', {
       client,
@@ -25,6 +26,8 @@ module.exports = async (req, res) => {
 
   } catch (error) {
     console.error('Error fetching client details:', error);
+
+    // Enhanced error handling: If query fails, prevent template crashing
     req.flash('error', 'Something went wrong.');
     res.render('clientProfile', { error: 'Something went wrong.', client: null, programs: [] });
   }
