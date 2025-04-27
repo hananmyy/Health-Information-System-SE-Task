@@ -17,10 +17,7 @@ module.exports = {
     dialect: "mysql"
   },
   production: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: "medixsys_db",
-    host: "localhost",
-    dialect: "mysql"
+    use_env_variable: 'DATABASE_URL',  // Sequelize will use the DATABASE_URL variable for production
+    dialect: "mysql",
   }
 };
