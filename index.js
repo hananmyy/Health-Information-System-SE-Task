@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const expressSession = require("express-session");
 const flash = require("connect-flash");
 const fileUpload = require("express-fileupload");
+const mysql = require("mysql2");
 
 
 app.set("view engine", "ejs");
