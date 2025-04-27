@@ -112,6 +112,7 @@ app.use((req, res) => res.render("notFound"));
 
 
 //This will only start the server as Database Connection is already handled in config/database.js file
-app.listen(3100, () => {
-  console.log("Server is running on port 3100");
+const port = process.env.PORT || 3100; // Use Railway's dynamic port or fallback to 3100 locally
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
